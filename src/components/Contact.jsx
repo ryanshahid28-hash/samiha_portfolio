@@ -16,10 +16,10 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-24 px-6">
+    <section id="contact" className="relative flex flex-col py-16 sm:py-24 w-full">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,42,133,0.04)_0%,transparent_60%)]" />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10">
         {/* Section header */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon-pink/10 border border-neon-pink/20 mb-4">
@@ -54,7 +54,7 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <span className="text-sm font-mono">samiha@example.com</span>
+                  <span className="text-sm font-mono">samihashahin23@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-400">
                   <div className="w-9 h-9 rounded-lg bg-electric-purple/10 border border-electric-purple/20 flex items-center justify-center">
@@ -140,3 +140,4 @@ export default function Contact() {
     </section>
   )
 }
+

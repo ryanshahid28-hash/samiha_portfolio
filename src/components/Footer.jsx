@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="relative py-10 px-6 border-t border-white/5">
+    <footer className="relative w-full py-10 border-t border-white/5 mt-auto">
       {/* Background */}
       <div className="absolute inset-0 bg-[rgba(5,5,10,0.8)]" />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10">
         <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-3 sm:gap-6">
           {/* Left: name */}
           <div className="order-2 text-center sm:order-1 sm:text-left">
@@ -17,7 +17,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               {/* GitHub */}
               <a
-                href="https://github.com/samihashahin"
+                href="https://github.com/SAMIHASHAHIN20"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="github-link"
@@ -32,7 +32,7 @@ export default function Footer() {
 
               {/* LinkedIn */}
               <a
-                href="https://linkedin.com/in/samihashahin"
+                href="https://linkedin.com/in/samiha-shahin-66a300374"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="linkedin-link"
