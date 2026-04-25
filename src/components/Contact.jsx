@@ -1,18 +1,34 @@
 import { useState } from 'react'
+import axios from 'axios'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [statusMessage, setStatusMessage] = useState('')
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Mailto fallback
-    const subject = `Portfolio Contact from ${formData.name}`
-    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    window.location.href = `mailto:samihashahin23@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setStatus('loading')
+
+    try {
+      const { data } = await axios.post(`${API_URL}/api/contact`, formData)
+      setStatus('success')
+      setStatusMessage(data.message || 'Message sent successfully!')
+      setFormData({ name: '', email: '', message: '' })
+      setTimeout(() => setStatus('idle'), 5000)
+    } catch (err) {
+      setStatus('error')
+      setStatusMessage(
+        err.response?.data?.error || 'Something went wrong. Please try again.'
+      )
+      setTimeout(() => setStatus('idle'), 5000)
+    }
   }
 
   return (
@@ -128,12 +144,34 @@ export default function Contact() {
             <button
               id="contact-submit"
               type="submit"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-neon-pink to-electric-purple text-white font-semibold text-sm
+              disabled={status === 'loading'}
+              className={`w-full py-3 rounded-xl bg-gradient-to-r from-neon-pink to-electric-purple text-white font-semibold text-sm
                 hover:shadow-[0_0_30px_rgba(255,42,133,0.4)] hover:scale-[1.02] active:scale-[0.98]
-                transition-all duration-300"
+                transition-all duration-300 ${status === 'loading' ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
-              <span className="font-mono mr-1">{'>'}</span> Send Message
+              {status === 'loading' ? (
+                <span className="inline-flex items-center gap-2">
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  </svg>
+                  Sending...
+                </span>
+              ) : (
+                <><span className="font-mono mr-1">{'>'}</span> Send Message</>
+              )}
             </button>
+
+            {status === 'success' && (
+              <div className="mt-4 p-3 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-sm text-center font-mono">
+                ✓ {statusMessage}
+              </div>
+            )}
+            {status === 'error' && (
+              <div className="mt-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center font-mono">
+                ✗ {statusMessage}
+              </div>
+            )}
           </form>
         </div>
       </div>

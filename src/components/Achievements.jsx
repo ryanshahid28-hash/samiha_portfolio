@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import cert1 from './certificate1.jpeg'
+import cert2 from './certificate2.jpeg'
+import cert3 from './certificate 3.jpeg'
 
 const achievements = [
   {
@@ -7,7 +10,7 @@ const achievements = [
     description: 'Participated in the Coding Club Internal Hackathon at Kongu Engineering College, tackling development challenges under tight deadlines.',
     icon: '💻',
     tag: 'Hackathon',
-    certificateSrc: '/certificates/certificate-1.png',
+    certificateSrc: cert1,
   },
   {
     id: 2,
@@ -15,7 +18,7 @@ const achievements = [
     description: 'Successfully completed the comprehensive "Basics of Python" course via Infosys Springboard, mastering core programming workflows.',
     icon: '🐍',
     tag: 'Certification',
-    certificateSrc: '/certificates/certificate-2.png',
+    certificateSrc: cert3,
   },
   {
     id: 3,
@@ -23,7 +26,7 @@ const achievements = [
     description: 'Secured 1st position in Project Presentation for an "Automated Book Issue and Return Management System" at Nandha Educational Institutions.',
     icon: '🏆',
     tag: 'Award',
-    certificateSrc: '/certificates/certificate-3.png',
+    certificateSrc: cert2,
   },
 ]
 
